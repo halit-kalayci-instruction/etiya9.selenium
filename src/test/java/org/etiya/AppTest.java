@@ -31,24 +31,25 @@ public class AppTest {
     firefoxDriver.get("https://www.saucedemo.com/");
     try{
       WebElement usernameInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("user-name")));
-      softAssertions.assertThat(usernameInput.isDisplayed())
-              .withFailMessage("Kullanıcı adı girişi bulunamadı.");
+      softAssertions
+              .assertThat(usernameInput.isDisplayed())
+              .as("Kullanıcı adı girişi bulunamadı.");
       usernameInput.sendKeys("standard_user");
 
       WebElement passwordInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("password")));
       softAssertions.assertThat(passwordInput.isDisplayed())
-              .withFailMessage("Şifre girişi bulunamadı.");
+              .as("Şifre girişi bulunamadı.");
       passwordInput.sendKeys("secret_sauce");
 
       WebElement loginBtn = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login-button")));
       softAssertions
               .assertThat(loginBtn.isDisplayed())
-              .withFailMessage("Giriş yap butonu bulunamadı.");
+              .as("Giriş yap butonu bulunamadı.");
       loginBtn.click();
 
       softAssertions.assertThat(firefoxDriver.getCurrentUrl())
-              .withFailMessage("Giriş yapıldıktan sonra yönlendirilen url yanlış.")
-              .isEqualTo("https://www.saucedemo.com/inventory.html");
+              .as("Giriş yapıldıktan sonra yönlendirilen url yanlış.")
+              .isEqualTo("https://www.saucedemo.com/inventory.html1");
     }finally {
       softAssertions.assertAll();
     }
